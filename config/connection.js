@@ -17,3 +17,4 @@ connection.connect(function(err) {
 });
 
 module.exports = connection;
+// connection is exported to orm.js

@@ -1,4 +1,4 @@
-var orm = require("orm");
+var orm = require("../config/orm");
 
 var Burger = {
   all: function(cb) {
@@ -19,3 +19,4 @@ var Burger = {
 };
 
 module.exports = Burger;
+// Burger is exported to burger_controller.js

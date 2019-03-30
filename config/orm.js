@@ -1,4 +1,4 @@
-var connection = require("connection.js");
+var connection = require("./connection");
 
 //Helper function for populating queries.
 function printQuestionMarks(num) {
@@ -23,6 +23,7 @@ function objToSql(ob) {
       arr.push(key + "=" + value);
     }
   }
+  return arr.toString();
 }
 
 var orm = {
@@ -55,3 +56,4 @@ var orm = {
 };
 
 module.exports = orm;
+// orm is being exported to Burger.js

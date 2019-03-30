@@ -1,18 +1,37 @@
 <div class="row">
-    <div class="page-header">
-        <h1> Burger I'd Like To Eat </h1>
+    <div class="col-12">
+        <div class="page-header" id="burger-header">
+            <h1> Burgers I'd Like To Eat </h1>
+        </div>
     </div>
 </div>
 <div class="row">
-    <div class="col-md-4">
-        <h1> Burgers to Eat </h1>
+    <div class="col-sm-12 col-md-5" id="to-eat-sec">
+        <h2> Burgers to Eat </h2>
         <ul>
             {{#each burgers}}
             {{#unless devoured}}
-            {{this.burger_name}}
-            <br>
+            <div class="row burger-box">
+                <p class="burger-name">{{this.burger_name}}</p>
+                <button class="btn eat-burger" data-id={{this.id}}>Eat</button>
+            </div>
             {{/unless}}
             {{/each}}
         </ul>
+    </div>
+    <div class="col-sm-12 col-md-5 col-md-offset-2" id="eaten-sec">
+        <h2> Burgers I've Eaten </h2>
+        <ul>
+            {{#each burgers}}
+            {{#if devoured}}
+            <p class="burger-name">{{this.burger_name}}</p>
+            {{/if}}
+            {{/each}}
+        </ul>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12 col-md-8" id="add-burger-sec">
+        <h2> Add a Burger </h2>
     </div>
 </div>

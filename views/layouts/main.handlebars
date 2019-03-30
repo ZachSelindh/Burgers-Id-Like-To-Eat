@@ -6,23 +6,61 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
         integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <!-- CSS -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <style>
         body {
-            background: url("") no-repeat center center fixed;
+            background: url("https://shortysplacediner.com/wp-content/uploads/2017/10/burger-background-flip.jpg") no-repeat center center fixed;
             -webkit-background-size: cover;
             -moz-background-size: cover;
             -o-background-size: cover;
             background-size: cover;
         }
 
-        @font-face {
-            font-family: "";
-            src: url();
+        * {
+            box-sizing: border-box;
         }
 
-        * {
-            font-family: "" !important;
-            box-sizing: border-box;
+        h2 {
+            border-bottom: 2px solid black;
+            padding: 0.2em;
+        }
+
+        .burger-box {
+            margin-bottom: 0.5em;
+        }
+
+        .burger-name {
+            font-size: 1.2em;
+        }
+
+        .eat-burger {
+            margin-left: 1em;
+        }
+
+        .eat-burger:hover {
+            color: blue
+        }
+
+        #burger-header,
+        #to-eat-sec,
+        #add-burger-sec,
+        #eaten-sec {
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 1em;
+            border: 4px solid black;
+            border-radius: 0.3em;
+        }
+
+        #to-eat-sec,
+        #add-burger-sec,
+        #eaten-sec {
+            margin: auto;
+            margin-top: 1em;
+        }
+
+        #to-eat-sec,
+        #eaten-sec {
+            height: 25em;
         }
     </style>
     <title>Burger I'd Like To Eat</title>
@@ -48,7 +86,20 @@
         crossorigin="anonymous"></script>
     <!-- Javascript -->
     <script>
-
+        $(".eat-burger").on("click", function () {
+            let id = $(this).data("id");
+            console.log(id);
+            let devoured = {
+                devoured: 1
+            };
+            $.ajax("/api/burgers/" + id, {
+                type: "PUT",
+                data: devoured
+            }).then(function () {
+                console.log(id + " has been eaten.")
+                location.reload();
+            });
+        })
 
     </script>
 

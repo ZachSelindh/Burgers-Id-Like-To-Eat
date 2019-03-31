@@ -21,6 +21,14 @@ app.use(bodyParser.json());
 
 var routes = require("./controllers/burgers_controller");
 
+// Timeout
+app.use(timeout(15000));
+app.use(haltOnTimedout);
+
+function haltOnTimedout(req, res, next) {
+  if (!req.timedout) next();
+}
+
 app.use(routes);
 
 app.listen(PORT, function() {

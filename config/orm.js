@@ -41,22 +41,20 @@ var orm = {
       cb(data);
     });
   },
-  insertOne: function(table, col, vals, cb) {
+  insertOne: function(table, cols, vals, cb) {
     let queryString = "INSERT INTO " + table + " (";
-    queryString += col.toString() + ") ";
+    queryString += cols.toString() + ") ";
     queryString += "VALUES (";
     queryString += printQuestionMarks(vals.length) + ");";
-    connection.query(queryString, function(err, data) {
+    connection.query(queryString, vals, function(err, data) {
       if (err) throw err;
       cb(data);
     });
   },
   updateOne: function(table, objColVals, condition, cb) {
-    console.log("Obj: " + objToSql(objColVals));
     let queryString = "UPDATE " + table + " SET ";
     queryString += objToSql(objColVals) + " WHERE ";
     queryString += condition;
-    console.log("Query at orm: " + queryString);
     connection.query(queryString, function(err, data) {
       if (err) throw err;
       cb(data);

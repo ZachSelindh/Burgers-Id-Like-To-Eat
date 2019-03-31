@@ -60,6 +60,11 @@
 
         #to-eat-sec,
         #eaten-sec {
+            overflow: hidden scroll;
+        }
+
+        #to-eat-sec,
+        #eaten-sec {
             height: 25em;
         }
     </style>
@@ -88,7 +93,6 @@
     <script>
         $(".eat-burger").on("click", function () {
             let id = $(this).data("id");
-            console.log(id);
             let devoured = {
                 devoured: 1
             };
@@ -96,11 +100,21 @@
                 type: "PUT",
                 data: devoured
             }).then(function () {
-                console.log(id + " has been eaten.")
                 location.reload();
             });
         })
-
+        $("#add-burger").on("click", function () {
+            var newBurger = {
+                name: $("#burger-add-form").val().trim(),
+                devoured: 0
+            };
+            $.ajax("/api/burgers", {
+                type: "POST",
+                data: newBurger
+            }).then(function () {
+                location.reload();
+            })
+        })
     </script>
 
 </body>

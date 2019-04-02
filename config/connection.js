@@ -23,19 +23,6 @@ connection.connect(function(err) {
     console.error("Error: " + err.stack);
     return;
   }
-  connection.query(`
-  CREATE TABLE burgers (
-  id INTEGER AUTO_INCREMENT NOT NULL PRIMARY KEY,
-  burger_name VARCHAR(100),
-  devoured BOOLEAN DEFAULT FALSE
-  );
-  
-  INSERT INTO burgers (burger_name)
-VALUES 
-("Double-Double"),
-("Bacon Whataburger"),
-("Sonic Jalapeno Double")
- ;`);
   console.log("Connected as ID " + connection.threadId);
 });
 
